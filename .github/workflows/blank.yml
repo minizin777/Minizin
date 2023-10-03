@@ -1,0 +1,58 @@
+# - nome: Configuração do ambiente Node.js.
+  usa: ações/setup-node@v3.8.1
+  com:
+    # Defina sempre-auth no npmrc.
+    sempre-auth: # opcional, o padrão é falso
+    # Versão Especificação da versão a ser usada. Exemplos: 12.x, 10.15.1, >=10.15.0.
+    versão do nó: # opcional
+    # Arquivo contendo a especificação da versão a ser usada. Exemplos: .nvmrc, .node-version, .tool-versions.
+    arquivo de versão do nó: # opcional
+    # Arquitetura de destino para o Node usar. Exemplos: x86, x64. Usará a arquitetura do sistema por padrão.
+    arquitetura: # opcional
+    # Defina esta opção se desejar que a ação verifique a versão mais recente disponível que atenda às especificações da versão.
+    verificar mais recente: # opcional
+    # Registro opcional para configurar para autenticação. Definirá o registro em um arquivo .npmrc e .yarnrc no nível do projeto e configurará a autenticação para leitura de env.NODE_AUTH_TOKEN.
+    URL do registro: # opcional
+    # Escopo opcional para autenticação em registros com escopo definido. Retornará ao proprietário do repositório ao usar o registro de pacotes GitHub (https://npm.pkg.github.com/).
+    escopo: # opcional
+    # Usado para extrair distribuições de nós de versões de nós. Como existe um padrão, normalmente ele não é fornecido pelo usuário. Ao executar esta ação no github.com, o valor padrão é suficiente. Ao executar no GHES, você pode passar um token de acesso pessoal para github.com se estiver enfrentando limitação de taxa.
+    token: # opcional, o padrão é ${{ github.server_url == 'https://github.com' && github.token || '' }}
+    # Usado para especificar um gerenciador de pacotes para armazenamento em cache no diretório padrão. Valores suportados: npm, fio, pnpm.
+    cache: # opcional
+    # Usado para especificar o caminho para um arquivo de dependência: package-lock.json, yarn.lock, etc. Suporta curingas ou uma lista de nomes de arquivos para armazenar em cache múltiplas dependências.
+    caminho de dependência de cache: # opcionalThis is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
